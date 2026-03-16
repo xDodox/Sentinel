@@ -1,0 +1,349 @@
+@keyframes tabIn {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+
+html,
+body,
+#root {
+  background: #202020 !important;
+  overflow: hidden !important;
+  color-scheme: dark;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+body,
+html {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll {
+  scrollbar-width: none !important;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+.tab-scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* ── Shared component classes ───────────────────────────────── */
+
+/* Panel card */
+.s-panel {
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* Border utility */
+.s-border {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Accent text */
+.s-accent-text {
+  color: var(--accent);
+}
+
+/* Accent background */
+.s-accent-bg {
+  background: var(--accent-bg);
+}
+
+/* Icon button */
+.s-icon-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  color: #4b5563;
+  transition: color 0.15s, background 0.15s;
+}
+
+.s-icon-btn:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* Buttons */
+.s-btn-accent {
+  background: var(--accent);
+  color: white;
+  border: none;
+  transition: filter 0.15s;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.s-btn-accent:hover {
+  filter: brightness(1.1);
+}
+
+.s-btn-accent:active {
+  filter: brightness(0.9);
+  transform: scale(0.97);
+}
+
+.s-btn-ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+}
+
+.s-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
+}
+
+.s-btn-danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #f87171;
+  transition: background 0.15s, color 0.15s;
+}
+
+.s-btn-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: white;
+}
+
+/* Script card in hub */
+.s-script-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.s-script-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--accent-border);
+}
+
+/* Settings section header */
+.s-section-header {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* Settings count buttons */
+.s-count-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-size: 16px;
+  line-height: 1;
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.15s;
+}
+
+.s-count-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Settings select */
+.s-select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  color: #d1d5db;
+  font-size: 12px;
+  padding: 6px 28px 6px 10px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.s-select:hover,
+.s-select:focus {
+  border-color: var(--accent-border);
+}
+
+/* Settings input */
+.s-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+
+.s-input-wrap:focus-within {
+  border-color: var(--accent-border);
+}
+
+.s-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: monospace;
+  padding: 6px 8px;
+  -moz-appearance: textfield;
+}
+
+.s-input::-webkit-outer-spin-button,
+.s-input::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* ── Radius overrides (uses --radius CSS var) ────────────────── */
+
+.rounded {
+  border-radius: calc(var(--radius, 8px) * 0.25) !important;
+}
+
+.rounded-sm {
+  border-radius: calc(var(--radius, 8px) * 0.25) !important;
+}
+
+.rounded-md {
+  border-radius: calc(var(--radius, 8px) * 0.375) !important;
+}
+
+.rounded-lg {
+  border-radius: calc(var(--radius, 8px) * 0.5) !important;
+}
+
+.rounded-xl {
+  border-radius: calc(var(--radius, 8px) * 0.75) !important;
+}
+
+.rounded-2xl {
+  border-radius: calc(var(--radius, 8px) * 1.0) !important;
+}
+
+.rounded-3xl {
+  border-radius: calc(var(--radius, 8px) * 1.25) !important;
+}
+
+/* ── Monaco ─────────────────────────────────────────────────── */
+
+.monaco-scrollable-element>.scrollbar.vertical {
+  display: block !important;
+  width: 6px !important;
+  background: transparent !important;
+  z-index: 200 !important;
+}
+
+.monaco-scrollable-element>.scrollbar.horizontal {
+  display: none !important;
+}
+
+.monaco-scrollable-element>.scrollbar>.slider {
+  border-radius: 0 !important;
+  background: var(--accent-glow) !important;
+}
+
+.monaco-scrollable-element>.scrollbar>.slider:hover {
+  background: var(--accent-border) !important;
+}
+
+.monaco-scrollable-element>.scrollbar>.slider:active {
+  background: var(--accent) !important;
+}
+
+.monaco-scrollable-element>.scrollbar .arrow-background {
+  display: none !important;
+}
+
+
+.monaco-editor .suggest-widget {
+  z-index: 999 !important;
+}
+
+.monaco-editor .parameter-hints-widget {
+  z-index: 999 !important;
+}
+
+.monaco-editor .editor-hover {
+  z-index: 999 !important;
+}
+
+
+
+.monaco-editor .overflow-guard {
+  clip-path: none !important;
+  overflow: hidden !important;
+}
+
+.monaco-editor .margin {
+  border-right: 1px solid rgba(255, 255, 255, 0.04) !important;
+  background: #181818 !important;
+}
+
+.monaco-editor .current-line {
+  border: none !important;
+  background: transparent !important;
+}
+
+.monaco-editor .margin .current-line-margin {
+  background: transparent !important;
+  border: none !important;
+}
+
+.monaco-editor .codicon-folding-collapsed,
+.monaco-editor .codicon-folding-expanded {
+  color: var(--accent) !important;
+  opacity: 0.7;
+}
+
+button {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+button:focus-visible {
+  outline: none !important;
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Sentinel",
+  "version": "1.0.0",
+  "identifier": "fun.cloverhub.sentinel",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "splash",
+        "url": "splash.html",
+        "title": "Sentinel",
+        "decorations": false,
+        "transparent": true,
+        "width": 650,
+        "height": 400,
+        "center": true,
+        "resizable": false,
+        "focus": true,
+        "visible": true,
+        "alwaysOnTop": false,
+        "shadow": false
+      },
+      {
+        "label": "main",
+        "url": "index.html",
+        "title": "Sentinel",
+        "decorations": false,
+        "backgroundColor": "#181818",
+        "width": 650,
+        "height": 400,
+        "center": true,
+        "resizable": false,
+        "focus": false,
+        "visible": false
+      },
+      {
+        "label": "settings",
+        "url": "index.html?w=settings",
+        "title": "Settings",
+        "decorations": false,
+        "backgroundColor": "#1a1a1a",
+        "width": 150,
+        "height": 240,
+        "center": true,
+        "resizable": false,
+        "focus": true,
+        "visible": false,
+        "alwaysOnTop": true
+      },
+      {
+        "label": "script-hub",
+        "url": "index.html?w=script-hub",
+        "title": "Script Hub",
+        "decorations": false,
+        "backgroundColor": "#181818",
+        "width": 475,
+        "height": 450,
+        "center": true,
+        "resizable": false,
+        "focus": true,
+        "visible": false,
+        "alwaysOnTop": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "capabilities": [
+        "default"
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": []
+  }
+}
